@@ -37,6 +37,9 @@ class main
 		$this->helper = $helper;
 		$this->template = $template;
 		$this->user = $user;
+
+		global $phpbb_root_path, $phpEx;
+		include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 	}
 
 	/**
@@ -45,11 +48,16 @@ class main
 	* @param string		$name
 	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
 	*/
-	public function handle($name)
+	public function handle()
 	{
-		$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
-		$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
-
-		return $this->helper->render('demo_body.html', $name);
+		$rank = array();
+		get_user_rank($this->user->data['user_rank'], $this->user->data['user_posts'], $rank['rank_title'], $rank['rank_image'], $rank['rank_image_src']);
+		$signature_preview = generate_text_for_display($this->user->data['user_sig'], $this->user->data['user_sig_bbcode_uid'], $this->user->data['user_sig_bbcode_bitfield'], OPTION_FLAG_BBCODE + OPTION_FLAG_LINKS + OPTION_FLAG_SMILIES);
+		$this->template->assign_vars(array(
+			'RANK_IMG'	=> $rank['rank_image'],
+			'SIGNATURE_PREVIEW'	=> $signature_preview,
+			'U_WEBROOTTEST_CONTROLLER'	=> $this->helper->route('acme_demo_controller'),
+		));
+		confirm_box(false, 'Hi ajax', '', 'demo_body.html');
 	}
 }
