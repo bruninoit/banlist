@@ -7,7 +7,7 @@
 *
 */
 
-namespace acme\demo\event;
+namespace staffit\banlist\event;
 
 /**
 * @ignore
@@ -32,6 +32,8 @@ class main_listener implements EventSubscriberInterface
 
 	/* @var \phpbb\template\template */
 	protected $template;
+
+
 
 	/**
 	* Constructor
@@ -58,7 +60,7 @@ class main_listener implements EventSubscriberInterface
 	public function add_page_header_link($event)
 	{
 		$this->template->assign_vars(array(
-			'U_DEMO_PAGE'	=> $this->helper->route('acme_demo_controller', array('name' => 'world')),
+			'U_DEMO_PAGE'	=> $this->helper->route('acme_demo_controller'),
 		));
 	}
 }
