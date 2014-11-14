@@ -7,7 +7,7 @@
 *
 */
 
-namespace acme\demo\controller;
+namespace staffit\banlist\controller;
 
 class main
 {
@@ -22,6 +22,7 @@ class main
 
 	/* @var \phpbb\user */
 	protected $user;
+protected $db; 
 
 	/**
 	* Constructor
@@ -31,25 +32,76 @@ class main
 	* @param \phpbb\template\template	$template
 	* @param \phpbb\user				$user
 	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\user $user)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, \phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\template\template $template)
 	{
+ $this->db = $db;
+$this->user = $user; 
 		$this->config = $config;
 		$this->helper = $helper;
 		$this->template = $template;
-		$this->user = $user;
 	}
-
-	/**
+/**
 	* Demo controller for route /demo/{name}
 	*
 	* @param string		$name
 	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
 	*/
-	public function handle($name)
+	public function handle()
 	{
-		$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
-		$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
+ //query
+$sql="SELECT ban_userid, ban_start, ban_end, ban_reason, user_id, username
+FROM ".BANLIST_TABLE.",".USERS_TABLE."
+WHERE ban_userid > 0
+AND ban_userid = user_id";
+//eseguo la query
+$result = $this->db-> sql_query($sql);
+//ciclo
+while($row = $this->db->sql_fetchrow($result))
+{
+	$ban = $row['ban_end'];
+	$banstart = $row['ban_start'];
+	if ($ban == 0)
+	{
+		$ban = (string)$this->user->lang['PERMABAN'];
+	}
+	else
+	{
+		$ban=$this->user-> format_date ($row['ban_end']);
+	}
+	$ban_reason= $row['ban_reason'];
+//motivo ban non presente
+if(empty($ban_reason))
+	{	$ban_reason=(string)$this->user-> lang['NO_REASON_BAN'];
+	}
+//date
+	$banstart=$this->user-> format_date($row['ban_start']);
+//template
+	$this->template-> assign_block_vars('risultati',array(
+		'NOME'=> $row['username'],
+		'BANIN'=> $banstart,
+		'BAN'=> $ban,
+		'MOTIVO'=> $ban_reason
+	));
+	}
+$this->db->sql_freeresult();
 
-		return $this->helper->render('demo_body.html', $name);
+// query totale ban
+$sql_ary = "SELECT COUNT(*) AS bans
+FROM ".BANLIST_TABLE.",".USERS_TABLE."
+WHERE ban_userid > 0
+AND ban_userid = user_id";
+//la eseguo
+$result = $this->db->sql_query($sql_ary);
+//risultati
+$total_results = $this->db->sql_fetchfield('bans');
+$this->db->sql_freeresult($result);
+//mando al template
+$this->template->assign_vars(array(
+   'TOTAL_BAN'       => ($total_results == 1) ? $this->user->lang['TOTAL_BAN'] : sprintf($this->user->lang['TOTAL_BANS'], $total_results),
+)); 
+		//$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
+		//$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
+
+		return $this->helper->render('demo_body.html');
 	}
 }
