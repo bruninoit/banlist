@@ -1,27 +1,30 @@
 {
-	"name": "acme/demo",
+	"name": "staffit/banlist",
 	"type": "phpbb-extension",
-	"description": "Acme Demo Extension for phpBB 3.1",
-	"homepage": "https://github.com/nickvergessen/phpbb-ext-acme-demo",
-	"version": "0.1.0",
-	"time": "2013-11-05",
+	"description": "Conversione della MOD di Barrnet che crea una pagina con la lista di tutti i bannati",
+	"homepage": "https://github.com/bruninoit/banlist",
+	"version": "0.1.0-a1",
+	"time": "2014-11-14",
 	"license": "GPL-2.0",
 	"authors": [{
-			"name": "Joas Schilling",
-			"email": "nickvergessen@gmx.de",
-			"homepage": "https://github.com/nickvergessen/",
+			"name": "brunino",
+			"email": "brunino@altervista.org",
+			"homepage": "http://brunino.altervista.org/area51/phpbb311/",
 			"role": "Lead Developer"
+		},
+{
+			"name": "Barrnet",
+			"email": "barrnet@videogamezone.eu",
+			"homepage": "http://videogamezone.eu",
+			"role": "Previous Developer"
 		}],
 	"require": {
 		"php": ">=5.3.3"
 	},
-	"require-dev": {
-		"phpbb/epv": "dev-master"
-	},
 	"extra": {
-		"display-name": "Acme Demo Extension",
+		"display-name": "Ban List",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.0-RC2,<3.2.*@dev"
+			"phpbb/phpbb": ">=3.1.0-a1,<3.2.*@dev"
 		}
 	}
 }
