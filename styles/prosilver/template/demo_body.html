@@ -1,5 +1,33 @@
 <!-- INCLUDE overall_header.html -->
+       <h2>{L_BAN_LIST}</h2>  
 
-<h2>{DEMO_MESSAGE}</h2>
+    <div class="forabg">
+       <div class="inner"><span class="corners-top"><span></span></span>
+	   
 
-<!-- INCLUDE overall_footer.html -->
+          <ul class="topiclist">
+             <li class="header">
+                <dl class="icon">
+                   <dd style="width: 10%">&nbsp;&nbsp;&nbsp; {L_BANNED_NAME} </dd>
+				   <dd style="width: 25%">&nbsp;&nbsp;&nbsp;{L_BAN_IN}</dd>
+                   <dd style="width: 25%">&nbsp;&nbsp;&nbsp;{L_BAN_OUT}</dd>
+                   <dd style="width: 39%">&nbsp;&nbsp;&nbsp;{L_BAN_REASON}</dd>
+                </dl>
+             </li>
+          </ul>
+          <ul class="topiclist forums">
+             <!-- BEGIN risultati -->
+             <li>
+                <dl>
+                   <dd style="width: 10%; padding: 3px; border-bottom: 1px solid #cdcdcd;">&nbsp;&nbsp;{risultati.NOME}</dd>
+				   <dd style="width: 25%; padding: 3px 0; border-bottom: 1px solid #cdcdcd;">&nbsp;&nbsp;{risultati.BANIN}</dd>
+                   <dd style="width: 25%; padding: 3px 0; border-bottom: 1px solid #cdcdcd;">&nbsp;&nbsp;{risultati.BAN}</dd>
+                   <dd style="width: 39%; padding: 3px 0; border-bottom: 1px solid #cdcdcd;">&nbsp;&nbsp;{risultati.MOTIVO}</dd>
+                    </dl>
+                 </li>
+              <!-- END risultati -->
+          </ul>
+          <span class="corners-bottom"><span></span></span>
+       </div>
+    </div>
+    <!-- INCLUDE overall_footer.html -->
