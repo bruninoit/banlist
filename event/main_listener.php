@@ -51,7 +51,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = array(
-			'ext_name' => 'acme/demo',
+			'ext_name' => 'staffit/banlist',
 			'lang_set' => 'common',
 		);
 		$event['lang_set_ext'] = $lang_set_ext;
@@ -60,7 +60,7 @@ class main_listener implements EventSubscriberInterface
 	public function add_page_header_link($event)
 	{
 		$this->template->assign_vars(array(
-			'U_DEMO_PAGE'	=> $this->helper->route('acme_demo_controller'),
+			'U_BANLIST_PAGE'	=> $this->helper->route('staffit_banlist_controller'),
 		));
 	}
 }
