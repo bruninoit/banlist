@@ -18,14 +18,13 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
- 'DEMO_PAGE'			=> 'Demo',	'DEMO_HELLO'		=> 'Hello %s!',	'DEMO_GOODBYE'		=> 'Goodbye %s!',	'ACP_DEMO_TITLE'			=> 'Demo Module',	'ACP_DEMO'					=> 'Settings',	'ACP_DEMO_GOODBYE'			=> 'Should say goodbye?',	'ACP_DEMO_SETTING_SAVED'	=> 'Settings have been saved successfully!', 
-	'BANNED_NAME'			=> 'Nickname',
-	'BAN_LIST'			=> 'Lista Ban',
-	'BAN_IN'			=> 'Inizio Ban',
-	'BAN_OUT'			=> 'Fine Ban',
-	'BAN_REASON'			=> 'Motivo',
-    'PERMABAN'           => 'Ban Permanente',
-    'NO_REASON_BAN'      => 'Nessuna motivazione specificata',
-    'TOTAL_BAN'          => 'Un utente bannato',
-    'TOTAL_BANS'          => '%s utenti bannati',
+	'BANNED_NAME'			=> 'Users',
+	'BAN_LIST'			=> 'Ban List',
+	'BAN_IN'			=> 'Start Ban',
+	'BAN_OUT'			=> 'End Ban',
+	'BAN_REASON'			=> 'Reason',
+    'PERMABAN'           => 'Permaban',
+    'NO_REASON_BAN'      => 'No Reason',
+    'TOTAL_BAN'          => 'One user banned',
+    'TOTAL_BANS'          => '%s users banned',
 ));
