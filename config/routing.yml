@@ -1,3 +1,3 @@
-acme_demo_controller:
+staffit_banlist_controller:
     pattern: /banlist/
-    defaults: { _controller: acme.demo.controller:handle }
+    defaults: { _controller: staffit.banlist.controller:handle }
