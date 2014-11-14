@@ -1,14 +1,14 @@
 services:
-    acme.demo.controller:
-        class: acme\demo\controller\main
+    staffit.banlist.controller:
+        class: staffit\banlist\controller\main
         arguments:
             - @dbal.conn
             - @user
             - @config
             - @controller.helper
             - @template
-    acme.demo.listener:
-        class: acme\demo\event\main_listener
+    staffit.banlist.listener:
+        class: staffit\banlist\event\main_listener
         arguments:
             - @controller.helper
             - @template
