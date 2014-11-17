@@ -25,6 +25,6 @@ $lang = array_merge($lang, array(
 	'BAN_REASON'			=> 'Reason',
     'PERMABAN'           => 'Permaban',
     'NO_REASON_BAN'      => 'No Reason',
-    'TOTAL_BAN'          => 'One user banned',
-    'TOTAL_BANS'          => '%s users banned',
+    'TOTALS_BAN'          => 'There is one user banned',
+    'TOTAL_BANS'          => 'There are %s users banned',
 ));
