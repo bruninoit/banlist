@@ -1,3 +1,3 @@
 staffit_banlist_controller:
-    pattern: /banlist/
+    path: /banlist/
     defaults: { _controller: staffit.banlist.controller:handle }
