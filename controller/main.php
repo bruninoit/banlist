@@ -96,9 +96,14 @@ $result = $this->db->sql_query($sql_ary);
 $total_results = $this->db->sql_fetchfield('bans');
 $this->db->sql_freeresult($result);
 //mando al template
+if($total_results == 1)
+{
+$this->template->assign_vars(array('TOTAL_BAN'       => $this->user->lang['TOTAL_BAN'])); 
+}else{
 $this->template->assign_vars(array(
-   'TOTAL_BAN'       => ($total_results == 1) ? $this->user->lang['TOTAL_BAN'] : sprintf($this->user->lang['TOTAL_BANS'], $total_results),
+   'TOTAL_BAN'       => sprintf($this->user->lang['TOTAL_BANS'], $total_results),
 )); 
+}
 		//$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
 		//$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
 
