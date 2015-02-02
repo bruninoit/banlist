@@ -107,6 +107,6 @@ $this->template->assign_vars(array(
 		//$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
 		//$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
 
-		return $this->helper->render('demo_body.html', $this->users->lang['BAN_LIST']);
+		return $this->helper->render('demo_body.html', $this->user->lang['BAN_LIST']);
 	}
 }
