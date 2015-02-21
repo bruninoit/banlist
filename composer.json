@@ -24,7 +24,12 @@
 	"extra": {
 		"display-name": "Ban List",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.1.0-a1,<3.2.*@dev"
+			"phpbb/phpbb": ">=3.1.0-a1,<3.2.*@dev",
+        "version-check": {
+            "host": "brunino.altervista.org",
+            "directory": "/version/",
+            "filename": "banlist.json"
+        }
 		}
 	}
 }
