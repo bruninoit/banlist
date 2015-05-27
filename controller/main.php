@@ -48,11 +48,13 @@ $this->user = $user;
 	*/
 	public function handle()
 	{
+		$time = time();
  //query
 $sql="SELECT ban_userid, ban_start, ban_end, ban_reason, user_id, username
 FROM ".BANLIST_TABLE.",".USERS_TABLE."
 WHERE ban_userid > 0
-AND ban_userid = user_id";
+AND ban_userid = user_id
+AND ban_end < $time";
 //eseguo la query
 $result = $this->db-> sql_query($sql);
 //ciclo
