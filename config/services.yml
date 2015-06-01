@@ -12,5 +12,6 @@ services:
         arguments:
             - @controller.helper
             - @template
+            - @dbal.conn
         tags:
             - { name: event.listener }
