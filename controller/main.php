@@ -22,8 +22,8 @@ class main
 
 	/* @var \phpbb\user */
 	protected $user;
-protected $db; 
-
+	protected $db; 
+	protected $request;
 	/**
 	* Constructor
 	*
@@ -32,13 +32,14 @@ protected $db;
 	* @param \phpbb\template\template	$template
 	* @param \phpbb\user				$user
 	*/
-	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, \phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\template\template $template)
+	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\user $user, \phpbb\config\config $config, \phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\request\request $request)
 	{
- $this->db = $db;
-$this->user = $user; 
+ 		$this->db = $db;
+		$this->user = $user; 
 		$this->config = $config;
 		$this->helper = $helper;
 		$this->template = $template;
+		$this->request  = $request;
 	}
 /**
 	* Demo controller for route /demo/{name}
@@ -49,12 +50,30 @@ $this->user = $user;
 	public function handle()
 	{
 		$time = time();
+
+ if($this->request->variable('get_type', 0) == 1)
+ {
+ 	$banendn=1;
+ }else{
+  	$banendn=0;
+ }
+ 
+ if($banendn==0 or !$banend)
+ {
+  $banend="AND ban_end < $time";
+ }
+ $this->template->assign_vars(array(
+//			'U_BANLIST_PAGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
+//			'CHANGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
+//		));
+
+
  //query
 $sql="SELECT ban_userid, ban_start, ban_end, ban_reason, user_id, username
 FROM ".BANLIST_TABLE.",".USERS_TABLE."
 WHERE ban_userid > 0
 AND ban_userid = user_id
-AND ban_end < $time";
+$banend";
 //eseguo la query
 $result = $this->db-> sql_query($sql);
 //ciclo
@@ -91,7 +110,8 @@ $this->db->sql_freeresult();
 $sql_ary = "SELECT COUNT(*) AS bans
 FROM ".BANLIST_TABLE.",".USERS_TABLE."
 WHERE ban_userid > 0
-AND ban_userid = user_id";
+AND ban_userid = user_id
+$banend";
 //la eseguo
 $result = $this->db->sql_query($sql_ary);
 //risultati
@@ -108,11 +128,6 @@ $this->template->assign_vars(array(
 }
 		//$l_message = !$this->config['acme_demo_goodbye'] ? 'DEMO_HELLO' : 'DEMO_GOODBYE';
 		//$this->template->assign_var('DEMO_MESSAGE', $this->user->lang($l_message, $name));
-//$this->template->assign_vars(array(
-//			'U_BANLIST_PAGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
-//			'CHANGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
-//		));
-//controllo type
 
 
 		return $this->helper->render('banlist_body.html', $this->user->lang['BAN_LIST']);
