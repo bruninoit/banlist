@@ -32,7 +32,7 @@ class main_listener implements EventSubscriberInterface
 
 	/* @var \phpbb\template\template */
 	protected $template;
-
+	protected $db;
 
 
 	/**
@@ -41,10 +41,11 @@ class main_listener implements EventSubscriberInterface
 	* @param \phpbb\controller\helper	$helper		Controller helper object
 	* @param \phpbb\template			$template	Template object
 	*/
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template)
+	public function __construct(\phpbb\controller\helper $helper, \phpbb\template\template $template, \phpbb\db\driver\driver_interface $db)
 	{
 		$this->helper = $helper;
 		$this->template = $template;
+		$this->db = $db;
 	}
 
 	public function load_language_on_setup($event)
