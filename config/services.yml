@@ -7,6 +7,7 @@ services:
             - @config
             - @controller.helper
             - @template
+            - @request
     staffit.banlist.listener:
         class: staffit\banlist\event\main_listener
         arguments:
