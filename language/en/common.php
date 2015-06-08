@@ -27,4 +27,6 @@ $lang = array_merge($lang, array(
     'NO_REASON_BAN'      => 'No Reason',
     'TOTAL_BAN'          => 'There is one user banned',
     'TOTAL_BANS'          => 'There are %s users banned',
+      'CHANGE_TYPE_ALL'          => 'Archive of all bans (also bans concluded)',
+    'CHANGE_TYPE_LIMIT'          => 'List of current bans',
 ));
