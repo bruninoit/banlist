@@ -19,4 +19,6 @@ $lang = array_merge($lang, array(
     'NO_REASON_BAN'      => 'Nessuna motivazione specificata',
     'TOTAL_BAN'          => 'C&apos;&egrave; un utente bannato',
     'TOTAL_BANS'          => 'Ci sono %s utenti bannati',
+    'CHANGE_TYPE_ALL'          => 'Storico di tutti i bannati (anche ban conclusi)',
+    'CHANGE_TYPE_LIMIT'          => 'Lista dei bannati attualmente',
 ));
