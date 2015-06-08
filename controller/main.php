@@ -47,25 +47,29 @@ class main
 	* @param string		$name
 	* @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
 	*/
-	public function handle()
+	public function handle($type)
 	{
 		$time = time();
 
- if($this->request->variable('get_type', 0) == 1)
- {
- 	$banendn=1;
- }else{
-  	$banendn=0;
- }
- 
- if($banendn==0 or !$banend)
+ if($type==0 or !$type)
  {
   $banend="AND ban_end < $time";
+  $newtype=1;
+ }else{
+ $newtype=0;	
  }
- $this->template->assign_vars(array(
-//			'U_BANLIST_PAGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
-//			'CHANGE_TYPE'	=> $this->helper->route('staffit_banlist_controller'),
-//		));
+ 
+ if($type==0 or !$type)
+{
+$this->template->assign_vars(array('CHANGE_TYPE'       => $this->user->lang['CHANGE_TYPE_ALL'])); 
+}else{
+$this->template->assign_vars(array('CHANGE_TYPE'       => $this->user->lang['CHANGE_TYPE_LIMIT']));
+}
+ 
+ 
+$this->template->assign_vars(array(
+			'U_BANLIST_PAGE_TYPE'	=> "app.php/banlist/{$newtype}",
+		));
 
 
  //query
