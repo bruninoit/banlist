@@ -56,6 +56,7 @@ class main
   $banend="AND ban_end < $time";
   $newtype=1;
  }else{
+$banend="";
  $newtype=0;	
  }
  
@@ -68,7 +69,7 @@ $this->template->assign_vars(array('CHANGE_TYPE'       => $this->user->lang['CHA
  
  
 $this->template->assign_vars(array(
-			'U_BANLIST_PAGE_TYPE'	=> "app.php/banlist/{$newtype}",
+			'U_BANLIST_PAGE_TYPE'	=> $newtype,
 		));
 
 
