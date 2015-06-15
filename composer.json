@@ -4,7 +4,7 @@
 	"description": "Conversione della MOD di Barrnet che crea una pagina con la lista di tutti i bannati",
 	"homepage": "https://github.com/bruninoit/banlist",
 	"version": "0.1.0-RC1",
-	"time": "2015-02-02",
+	"time": "2015-06-15",
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "brunino",
