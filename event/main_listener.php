@@ -61,7 +61,7 @@ class main_listener implements EventSubscriberInterface
 	public function add_page_header_link($event)
 	{
 		$this->template->assign_vars(array(
-			'U_BANLIST_PAGE'	=> $this->helper->route('staffit_banlist_controller'),
+			'U_BANLIST_PAGE'	=> $this->helper->route('staffit_banlist_controller', array('type' => '0')),
 		));
 	}
 }
