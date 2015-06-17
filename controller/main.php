@@ -63,8 +63,10 @@ $newtype=0;
  if($type==0 or !$type)
 {
 $this->template->assign_vars(array('CHANGE_TYPE'       => $this->user->lang['CHANGE_TYPE_ALL'])); 
+$this->template->assign_vars(array('ATTUAL_TYPE'       => $this->user->lang['CHANGE_TYPE_LIMIT']));
 }else{
 $this->template->assign_vars(array('CHANGE_TYPE'       => $this->user->lang['CHANGE_TYPE_LIMIT']));
+$this->template->assign_vars(array('ATTUAL_TYPE'       => $this->user->lang['CHANGE_TYPE_ALL']));
 }
  
  
