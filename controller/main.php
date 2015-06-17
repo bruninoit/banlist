@@ -51,14 +51,14 @@ class main
 	{
 		$time = time();
 
- if($type==0 or !$type)
- {
-  $banend="AND ban_end < $time";
-  $newtype=1;
- }else{
+if($type==0)
+{
+$banend="AND (ban_end > $time or ban_end=0)";
+$newtype=1;
+}else{
 $banend="";
- $newtype=0;	
- }
+$newtype=0; 
+}
  
  if($type==0 or !$type)
 {
